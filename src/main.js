@@ -1,11 +1,14 @@
-import Vue from 'vue'
-import App from './App'
+import Vue from "vue";
+import App from "./App";
+import http from "./http/httpService";
 
-Vue.config.productionTip = false
+Vue.prototype.$http = http;
 
-App.mpType = 'app'
+Vue.config.productionTip = false;
+
+App.mpType = "app";
 
 const app = new Vue({
-  ...App
-})
-app.$mount()
+  ...App,
+});
+app.$mount();
