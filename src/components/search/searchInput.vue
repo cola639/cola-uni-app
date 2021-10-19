@@ -1,6 +1,6 @@
 <template>
   <view class="search_input">
-    <navigator>搜索</navigator>
+    <navigator class="serch_nav">搜索</navigator>
   </view>
 </template>
 
@@ -12,9 +12,9 @@ export default {};
 .search_input {
   height: 70rpx;
   padding: 10rpx;
-  background-color: #eb4450;
+  background-color: #dd524d;
 }
-.search_input navigator {
+.search_input .serch_nav {
   height: 100%;
   display: flex;
   justify-content: center;

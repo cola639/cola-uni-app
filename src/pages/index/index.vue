@@ -43,7 +43,7 @@
             :url="good.navigator_url"
             :key="good.name"
           >
-            <image :src="good.image_src" mode="widthFix" />
+            <image :src="good.image_src" />
           </navigator>
         </view>
       </view>
@@ -52,9 +52,13 @@
 </template>
 
 <script>
-import searchInput from "../../components/searchInput.vue";
+import searchInput from "../../components/search/searchInput.vue";
 
 export default {
+  components: {
+    searchInput,
+  },
+
   data() {
     return {
       swipers: [],
@@ -86,14 +90,10 @@ export default {
       this.goodsList = res.message;
     },
   },
-
-  components: {
-    searchInput,
-  },
 };
 </script>
 
-<style lang="less">
+<style lang="scss">
 .home {
   //swiper
   .swiper {
@@ -112,6 +112,7 @@ export default {
       flex: 1;
       image {
         width: 100%;
+        height: 100%;
       }
     }
   }
@@ -125,34 +126,46 @@ export default {
           width: 100%;
         }
       }
-      .floor_list {
-        // 清除浮动
-        overflow: hidden;
-        navigator {
-          float: left;
-          width: 32%;
+    }
+  }
+}
 
-          /* 后四个超链接 */
-          &:nth-last-child(-n + 4) {
-            /* 原图的宽高 232 *386 */
-            // 232 / 386 = 33.33vw / height
-            // 第一张图片的高度 height:33.33vw * 386 /  232
-            height: 33.33vw * 386 / 232 /2;
-
-            border-left: 10rpx solid #fff;
-          }
-
-          /* 2 3 两个超链接 */
-          &:nth-child(2),
-          &:nth-child(3) {
-            border-bottom: 10rpx solid #fff;
-          }
-          image {
-            width: 100%;
-            height: 100%;
-          }
-        }
-      }
+.floor_list {
+  padding: 10rpx;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 10rpx;
+  grid-template-areas:
+    "a b c"
+    "a b c"
+    "a d e"
+    "a d e";
+  navigator {
+    &:first-child {
+      grid-area: a;
+      height: 400rpx;
+    }
+    &:nth-child(2) {
+      grid-area: b;
+      height: 200rpx;
+    }
+    &:nth-child(3) {
+      grid-area: c;
+      height: 200rpx;
+    }
+    &:nth-child(4) {
+      grid-area: d;
+      height: 200rpx;
+    }
+    &:nth-child(5) {
+      grid-area: e;
+      height: 200rpx;
+    }
+    image {
+      width: 100%;
+      height: 100%;
     }
   }
 }
